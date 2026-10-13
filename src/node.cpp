@@ -11,6 +11,7 @@ void Node::setName(std::string name) { name_ = requireNonEmpty(std::move(name), 
 
 std::optional<std::string> Node::property(const std::string &key) const
 {
+    auto it = properties_.find(key);
 
     if (it == properties_.end())
         return std::nullopt;
