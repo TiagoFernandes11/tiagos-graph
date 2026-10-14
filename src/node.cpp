@@ -3,6 +3,9 @@
 #include <string>
 #include "node.hpp"
 
+Node::Node(std::uint64_t id, std::string label, std::string name) : id_(id), label_(requireNonEmpty(std::move(label), "label")), name_(requireNonEmpty(std::move(name), "name")){}
+
+const std::uint64_t &Node::id() const {return id_;}
 const std::string &Node::label() const { return label_; }
 const std::string &Node::name() const { return name_; }
 
@@ -13,8 +16,7 @@ std::optional<std::string> Node::property(const std::string &key) const
 {
     auto it = properties_.find(key);
 
-    if (it == properties_.end())
-        return std::nullopt;
+    if (it == properties_.end()) return std::nullopt;
 
     return it->second;
 }
@@ -26,7 +28,6 @@ void Node::setProperty(const std::string &key, std::string value)
 
 std::string Node::requireNonEmpty(std::string s, const char *field)
 {
-    if (s.empty())
-        throw std::invalid_argument(std::string(field) + " must not be empty");
+    if (s.empty()) throw std::invalid_argument(std::string(field) + " must not be empty");
     return s;
 }
