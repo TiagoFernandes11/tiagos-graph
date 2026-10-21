@@ -1,6 +1,7 @@
+#include "node.hpp"
 #include "relation.hpp"
 
-Relation::Relation(std::uint64_t id, std::string label, std::string name, std::uint64_t from, std::uint64_t to)
+Relation::Relation(std::uint64_t id, std::string label, std::string name, Node* from, Node* to)
     : id_(id),
       label_(label),
       name_(name),
@@ -18,7 +19,7 @@ const std::string &Relation::name() const {
     return name_;
 };
 
-const std::pair<std::uint64_t, std::uint64_t> &Relation::nodes() const {
+const std::pair<Node*, Node*> &Relation::nodes() const {
     return nodes_;
 }
 
