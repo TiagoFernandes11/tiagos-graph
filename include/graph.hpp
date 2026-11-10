@@ -10,13 +10,16 @@ class Graph
         std::string label_;
         std::string name_;
 
-        Node **node;
-        int nodeCapacity;
-        int nodeQuantity;
+        Node **node_;
+        int nodeCapacity_;
+        int nodeQuantity_;
 
-        Relation ** relation;
-        int relationCapacity;
-        int relationQuantity;
+        // Relation ** relation_;
+        // int relationCapacity_;
+        // int relationQuantity_;
+
+        void instanciateGraph();
+        void increaseGraphCapacity();
 
     public:
         Graph(std::uint64_t id, std::string label, std::string name);
@@ -29,5 +32,5 @@ class Graph
         void setName(std::string newName);
 
         void addNode(Node* newNode);
-        void addRelation(Relation* newRelation);
+        // void addRelation(Relation* newRelation);
 };
