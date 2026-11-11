@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 #include <cstdint>
 #include <node.hpp>
@@ -11,15 +13,17 @@ class Graph
         std::string name_;
 
         Node **node_;
-        int nodeCapacity_;
-        int nodeQuantity_;
+        std::uint64_t nodeCapacity_;
+        std::uint64_t nodeQuantity_;
 
         // Relation ** relation_;
         // int relationCapacity_;
         // int relationQuantity_;
 
-        void instanciateGraph();
+        void instantiateGraph();
         void increaseGraphCapacity();
+
+        const std::uint64_t findNodeIndexByID(std::uint64_t id);
 
     public:
         Graph(std::uint64_t id, std::string label, std::string name);
@@ -32,5 +36,8 @@ class Graph
         void setName(std::string newName);
 
         void addNode(Node* newNode);
+        const Node* getNodeByID(std::uint64_t id);
+        Node* removeNodeByID(std::uint64_t id);
+
         // void addRelation(Relation* newRelation);
 };

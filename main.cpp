@@ -1,6 +1,5 @@
 #include <iostream>
 
-#include "relation.hpp"
 #include "node.hpp"
 #include "graph.hpp"
 
@@ -40,6 +39,36 @@ int main() {
         graph->addNode(new Node(i, "Pessoa", "Pessoa " + std::to_string(i)));
     }
     std::cout << "Adicionou mais 13 nós (total 15) sem quebrar" << std::endl;
+
+    std::cout << "graph->getNodeByID(13) -> name(): "  << graph->getNodeByID(13) -> name() << std::endl;
+
+    // Testes do removeNodeByID
+    Node *removido = graph->removeNodeByID(13);
+    std::cout << "Removeu do meio o nó " << removido->name() << std::endl;
+    delete removido;
+
+    std::cout << "graph->getNodeByID(13) após remover: "
+        << (graph->getNodeByID(13) ? "ainda existe" : "nullptr") << std::endl;
+    std::cout << "graph->getNodeByID(15) -> name() (era o último, foi para o lugar do 13): "
+        << graph->getNodeByID(15) -> name() << std::endl;
+
+    removido = graph->removeNodeByID(14);
+    std::cout << "Removeu do fim o nó " << removido->name() << std::endl;
+    delete removido;
+
+    removido = graph->removeNodeByID(1);
+    std::cout << "Removeu do início o nó " << removido->name() << std::endl;
+    delete removido;
+    std::cout << "graph->getNodeByID(2) -> name() após remover o 1: " << graph->getNodeByID(2) -> name() << std::endl;
+
+    std::cout << "graph->removeNodeByID(13) de novo: "
+        << (graph->removeNodeByID(13) ? "removeu algo" : "nullptr") << std::endl;
+    std::cout << "graph->removeNodeByID(99) inexistente: "
+        << (graph->removeNodeByID(99) ? "removeu algo" : "nullptr") << std::endl;
+
+    Graph *grafoVazio = new Graph(2, "Vazio", "Grafo vazio");
+    std::cout << "grafoVazio->removeNodeByID(1): "
+        << (grafoVazio->removeNodeByID(1) ? "removeu algo" : "nullptr") << std::endl;
 
     return 0;
 }
